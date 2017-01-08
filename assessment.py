@@ -68,7 +68,28 @@ included in the doctest.
 #        here', where are you from?" depending on what the function from part
 #        (a) evaluates to.
 
+def home_town(town):
+    """determines if town is hometown"""
 
+    if town == "Newtown":
+        return True
+    else:
+        return False
+
+
+def first_and_last(first, last):
+    """combines first and last name"""
+
+    return first + " " + last
+
+
+def combined(town, first, last):
+    """combines name and hometown"""
+
+    if home_town(town) is True:
+        print "Hi, %s, we're from the same place!" % first_and_last(first, last)
+    else:
+        print "Hi, %s, where are you from?" % first_and_last(first, last)
 
 ###############################################################################
 
@@ -82,10 +103,10 @@ included in the doctest.
 def is_berry(fruit):
     """Determines if fruit is a berry"""
 
-    if fruit == "cherry" or fruit == "strawberry" and fruit == "blackberry":
+    if fruit == "cherry" or fruit == "strawberry" or fruit == "blackberry":
         return True
     else:
-        return False    
+        return False
 
 
 # (b) Write another function, shipping_cost(), which calculates shipping cost
@@ -99,7 +120,7 @@ def shipping_cost(fruit):
     if is_berry(fruit) is True:
         return 0
     else:
-        return 5    
+        return 5
 
 
 # 2. Make a function that takes in a number and a list of numbers. It should
@@ -110,8 +131,8 @@ def append_to_list(lst, num):
     """Creates a new list consisting of the old list with the given number
        added to the end."""
 
-    pass
-
+    lst.append(num)
+    return lst
 
 
 # 3. Write a function calculate_price to calculate an item's total cost by
@@ -130,9 +151,21 @@ def append_to_list(lst, num):
 #    Your function should return the total cost of the item, including tax and
 #    fees.
 
-def calculate_price(FILL_ME_IN):
+#def calculate_price(FILL_ME_IN):
+def calculate_price(base, state, tax=0.05):
+    """calculates price based on state"""
 
-    pass
+    if state == "CA":
+        return base + base*tax + base*0.03
+    elif state == "PA":
+        return base + base*tax + 2.00
+    elif state == "MA":
+        if base < 100.00:
+            return base + base*tax + 1.00
+        else:
+            return base + base*tax + 3.00    
+    else:
+        return base + base*tax
 
 
 ###############################################################################
@@ -161,6 +194,25 @@ def calculate_price(FILL_ME_IN):
 
 #>>> outer("Balloonicorn")
 #('Balloonicorn', 'BalloonicornBalloonicornBalloonicorn')
+
+
+def new_function(lst, *additional):
+    """combines a list with additional arguments"""
+
+    combined_list = lst
+    combined_list += additional
+    return combined_list
+
+
+def multi_function(word):
+    """combines a word with results of word_times_three"""
+
+    def word_times_three(word):
+        """returns a word three times in a row"""
+        return word * 3
+
+    return (word, word_times_three(word))
+
 
 
 ###############################################################################
